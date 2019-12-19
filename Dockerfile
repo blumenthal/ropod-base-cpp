@@ -41,6 +41,17 @@ RUN cd /opt && \
     mv gtest/libg* /usr/lib && \
     rm -rf /opt/googleTestMock
 
+# Install newer Python version 3.5.9
+RUN cd /opt \
+    && apt-get install -y build-essential checkinstall \
+    && apt-get install -y libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev \
+    && wget https://www.python.org/ftp/python/3.5.9/Python-3.5.9.tgz \
+    && tar xzf Python-3.5.9.tgz \
+    && cd Python-3.5.9 \
+    && ./configure --enable-optimizations \
+    && make install \
+    && pip3 install --upgrade pip
+
 # Get the install script
 #RUN cd /opt; wget https://raw.githubusercontent.com/blumenthal/ropod-base-cpp/master/install_deps.sh; chmod 755 install_deps.sh 
 COPY install_deps.sh /opt
