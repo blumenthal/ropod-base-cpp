@@ -196,6 +196,7 @@ if [ ! -d libsodium ]; then
   git clone https://github.com/jedisct1/libsodium.git
 fi
 cd libsodium
+git checkout stable
 ./autogen.sh
 ./configure 
 make ${J}
